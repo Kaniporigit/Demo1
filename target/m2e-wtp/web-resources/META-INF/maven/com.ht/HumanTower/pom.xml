@@ -69,6 +69,12 @@
 			<version>${spring.security.version}</version>
 		</dependency>
 		
+		<!-- Spring Security JSP Taglib -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
 		<!-- ORM integration, e.g Hibernate -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -96,7 +102,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.connector.version}</version>
 		</dependency>
- 
+ 		<!-- jstl for jsp page -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
 		<!-- logging, slf4j -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
