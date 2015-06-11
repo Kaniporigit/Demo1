@@ -34,7 +34,7 @@ public class HTUser {
 	private String employeId;
 	
 	@Column(name = "image")
-	private Object Image;
+	private String Image;
 	
 	@Column(name = "password", nullable = false, length = 100)
 	private String password;
@@ -127,17 +127,13 @@ public class HTUser {
 		this.employeId = employeId;
 	}
 
-	/**
-	 * @return the image
-	 */
-	public Object getImage() {
+	
+
+	public String getImage() {
 		return Image;
 	}
 
-	/**
-	 * @param image the image to set
-	 */
-	public void setImage(Object image) {
+	public void setImage(String image) {
 		Image = image;
 	}
 

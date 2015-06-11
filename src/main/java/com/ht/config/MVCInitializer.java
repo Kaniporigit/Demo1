@@ -1,23 +1,22 @@
-package com.ht.config.core;
+package com.ht.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.ht.config.AppConfig;
-
-public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class MVCInitializer  extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { AppConfig.class };
+		return new Class[] { ViewConfig.class };
 	}
-
+ 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		return null;
 	}
-
+ 
 	@Override
 	protected String[] getServletMappings() {
+		
 		return new String[] { "/" };
 	}
 	

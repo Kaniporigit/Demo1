@@ -38,7 +38,7 @@ public class HTUserDetailsService {
 		
 	}
 
-	// Converts com.mkyong.users.model.User user to
+	// Converts com.ht.htusers.entity.User user to
 	// org.springframework.security.core.userdetails.User
 	private User buildUserForAuthentication(HTUser user, List<GrantedAuthority> authorities) {
 		return new User(user.getUserId().toString(), user.getPassword(), user.getUserStatus(), true, true, true, authorities);

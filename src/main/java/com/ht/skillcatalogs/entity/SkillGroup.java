@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
-@Table(name = "skillgroup", catalog = "HT")
+@Table(name = "skillgroup")
 public class SkillGroup implements Serializable{
 	
 	/**

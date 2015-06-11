@@ -7,32 +7,34 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	@Qualifier("userDetailsService")
 	UserDetailsService userDetailsService;
-
+	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	  auth.inMemoryAuthentication().withUser("tom").password("123456").roles("USER");
+	  auth.inMemoryAuthentication().withUser("bill").password("123456").roles("ADMIN");
+	  auth.inMemoryAuthentication().withUser("james").password("123456").roles("SUPERADMIN");
 	}
-
+ 
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
-		http.authorizeRequests().antMatchers("/admin/**")
-			.access("hasRole('ROLE_ADMIN')").and().formLogin()
-			.loginPage("/login").failureUrl("/login?error")
-				.usernameParameter("username")
-				.passwordParameter("password")
-				.and().logout().logoutSuccessUrl("/login?logout")
-				.and().csrf()
-				.and().exceptionHandling().accessDeniedPage("/403");
+ 
+	  http.authorizeRequests()
+		.antMatchers("/protected/**").access("hasRole('ROLE_ADMIN')")
+		.antMatchers("/confidential/**").access("hasRole('ROLE_SUPERADMIN')")
+		.and().formLogin();
+ 
 	}
 	
 	@Bean
